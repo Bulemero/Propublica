@@ -30,7 +30,9 @@
 
     </header>
 
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-dark bg-dark">
+
+
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
@@ -45,15 +47,17 @@
         </div>
     </nav>
 
-
-    <header>
-        <div>
-            <p><a href="https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment">Transparency and Open Government</a></p>
-
-        </div>
-    </header>
-    <!--Table container-->
     <div>
+        <p><a href="https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment">Transparency and Open Government</a></p>
+
+    </div>
+
+    <!--Table container-->
+
+    <div class="mainImage"> <img src="../ProPublica/images/home1.png" alt="Home icon" style="height:128px">
+    </div>
+
+    <div class="container">
         <div class="aboutUs">
             <h2>About Us</h2>
             <p>Openness, accountability, and honesty define government transparency. In a free society, transparency is government's obligation to share information with citizens. It is at the heart of how citizens hold their public officials accountable. Here at TGIF we believe that government should be transparent.</p>
@@ -62,10 +66,10 @@
             <p>TGIF works to disclose information in forms that the public can readily find and use. We solicit public feedback to identify information of greatest use to the public.</p>
         </div>
 
-        <div class="mainImage"> <img src="../ProPublica/images/home1.png" alt="Home icon" style="height:128px">
-        </div>
+        <button data-toggle="collapse" data-target="#demo">Read more</button>
 
-        <div class="aboutUs">
+        <div id="demo" class="aboutUs collapse">
+
             <h3>Background History of Government Transparency</h3>
             <p>In the West, the idea that government should be open to public scrutiny and susceptible to public opinion dates back at least to the time of the Enlightenment, when many philosophes made an attack on absolutist doctrine of state secrecy, a core part of their intellectual project. The passage of formal legislative instruments to this end can also be traced to this time with Sweden, for example, (which then included Finland as a Swedish-governed territory) enacting free press legislation as part of its constitution (Freedom of the Press Act, 1766). This approach, and that of the philosophes more broadly, is strongly related to recent historiography on the eighteenth-century public sphere.
 
@@ -75,10 +79,11 @@
 
                 <p>The United States passed its Freedom of Information Act (FOIA) in 1966, FOIAs, Access to Information Acts (AIAs) or equivalent laws were passed in Denmark and Norway in 1970.</p>
         </div>
-
     </div>
 
-    <footer class="myFooter" class="container-fluid">
+
+    <footer class="myFooter container-fluid">
+
         <p>
             &copy;2016 TGIF| All Rights Reserved
         </p>

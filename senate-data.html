@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="styles/propublica_style.css">
 
     <table id="senate-data"></table>
 
@@ -15,11 +17,22 @@
 
 <body>
 
-    <div>
-        <a href="#">TGIF</a>
-    </div>
+   <header class="flex-container">
 
-    <nav class="navbar navbar-inverse">
+        <div class="text-left">
+            <img src="../ProPublica/images/LOGOTGIF.jpg" alt="TGIF logo" style="height:128px">
+        </div>
+
+        <div class="contactEmail">
+            <p>
+                <a href="mailto:info@tgif.net">info@tgif.net
+                </a>
+            </p>
+        </div>
+
+    </header>
+
+    <nav class="navbar navbar-inverse navbar-dark bg-dark">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li><a href="home.html">Home</a></li>
@@ -39,6 +52,17 @@
     <div>
         <h2>Senators</h2>
         <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+        
+        <div>
+            
+            <label>Filter by party:</label>
+            <input type="checkbox" id="myCheckboxD" value="D">
+            <label>Democrat</label>
+            <input type="checkbox" id="myCheckboxR" value="R">
+            <label>Republican</label>
+            <input type="checkbox" id="myCheckboxI" value="I">
+            <label>Independent</label>
+        </div>
 
         <table class="table table-striped">
             <thead>
@@ -56,7 +80,8 @@
         </table>
     </div>
 
-    <footer class="container-fluid">
+    <footer class="myFooter container-fluid">
+
         <p>
             &copy;2016 TGIF| All Rights Reserved
         </p>

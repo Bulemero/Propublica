@@ -13,25 +13,34 @@ body {
 
 .contactEmail {
     margin-top: auto;
-    
+
 }
 
 /* MAIN */
 
+.mainImage {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container {
+    margin-top: -130px;
+}
+
 .aboutUs {
-    display: inline-block;
+    display: flex;
+    flex-flow: row wrap;
     max-width: 70%;
 }
 
-.mainImage {
-    display: flex;
-    text-align: right;
-}
 
 
 /* FOOTER */
 
 .myFooter {
     display: flex;
-    text-align: center;
+    justify-content: center;
+    background-color: #343A40;
+    color: #007bff;
+    margin: 10px 0px 0px 0px;
 }
