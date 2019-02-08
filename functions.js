@@ -13,7 +13,7 @@ var myTable = document.getElementById("myPrettyTable");
 //}
 
 function createMyTable(dataThatIWant) {
-    
+
 
     //we create an empty table to avoid overriding the existing table.
 
@@ -65,21 +65,21 @@ function myPartyFilter() {
     var selectedValues = [];
     var valuesChecked = [];
     var selectorCb = document.querySelectorAll("input:checked");
-    
-    for(var i = 0; i < selectorCb.length; i++){
+
+    for (var i = 0; i < selectorCb.length; i++) {
         valuesChecked.push(selectorCb[i].value)
     }
-    
+
     console.log(valuesChecked)
     dataThatIWant = data.results[0].members
 
     for (var i = 0; i < dataThatIWant.length; i++) {
-        
-       /* if(valuesChecked.includes(dataThatIWant[i].party) || valuesChecked.length == 0){
-         selectedValues.push(dataThatIWant[i])
-        }*/
 
-       if (document.getElementById("myCheckboxD").checked && dataThatIWant[i].party == "D") {
+        /* if(valuesChecked.includes(dataThatIWant[i].party) || valuesChecked.length == 0){
+          selectedValues.push(dataThatIWant[i])
+         }*/
+
+        if (document.getElementById("myCheckboxD").checked && dataThatIWant[i].party == "D") {
             selectedValues.push(dataThatIWant[i])
             console.log(dataThatIWant[i]);
         }
@@ -100,6 +100,47 @@ function myPartyFilter() {
             console.log(dataThatIWant[i]);
         }
     }
-    
+
     createMyTable(selectedValues)
 }
+
+
+
+// Before we create a select dropdown for the states, we must create a new array in order to sort them and disregard duplicates.
+
+    var noDupl = [];
+
+    for (var i = 0; i < dataThatIWant.length; i++) {
+
+        if (!noDupl.includes(dataThatIWant[i].state)) {
+
+            noDupl.push(dataThatIWant[i].state);
+        }
+    }
+
+
+    var statesUpdated = noDupl.sort();
+
+    //We discard the duplicaes from the array.
+
+
+    console.log(statesUpdated);
+
+    //We create the filter options by state
+
+    var options = document.getElementById("stateFilter");
+
+    for (var i = 0; i < statesUpdated.length; i++) {
+
+        var anotherOption = document.createElement("option");
+
+        var finalState = statesUpdated[i];
+
+        anotherOption.append(finalState);
+
+        anotherOption.setAttribute("value", finalState);
+
+        options.append(anotherOption);
+
+    }
+ 

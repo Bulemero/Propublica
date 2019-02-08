@@ -33,7 +33,25 @@ body {
     max-width: 70%;
 }
 
+.checkboxAndFilters {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
 
+}
+
+.checkboxParty {
+    max-width: 60%;
+}
+
+#statedropdown {
+    justify-content: flex-end;
+    
+}
+
+.table {
+    text-align: center;
+}
 
 /* FOOTER */
 
