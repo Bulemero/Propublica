@@ -1,21 +1,31 @@
-console.log(data);
+//CREATE VARIABLES FIRST
 
 var myTable = document.getElementById("myPrettyTable");
+var dataThatIWant = data.results[0].members;
+var dropdownStates = [];
+var selectedValues = [];
+var valuesChecked = [];
+var checkDropdown = document.getElementById("stateFilter").value;
+/*var newInfo = data.results[0].members;
+var noDupl = [];
+var nonRepeatedStates = [];
+*/
 
 
-//a function needs to be created in order to build the table, and  then we will only need to define what parameters need to be added to the function depending on whether we want to display all data or only the filtered through checkboxes.
+//CALL ALL FUNCTIONS AT THE BEGINNING OF YOUR CODE
+
+console.log(data);
+createMyTable(dataThatIWant);
+addingListeners();
+populateStatesDropdown();
 
 
-//element.addEventListener("click", myFunction);
-
-//function myFunction() {
-//alert ("Hello World!");
-//}
+//DISPLAY ALL FUNCTIONS
 
 function createMyTable(dataThatIWant) {
 
 
-    //we create an empty table to avoid overriding the existing table.
+    //line below is a reset of information
 
     document.getElementById("myPrettyTable").innerHTML = " ";
 
@@ -45,41 +55,48 @@ function createMyTable(dataThatIWant) {
 
 }
 
-createMyTable(data.results[0].members)
+
+function addingListeners() {
+
+    document.getElementById("myCheckboxR").addEventListener("click", function () {
+        myPartyFilter()
+    });
+    document.getElementById("myCheckboxD").addEventListener("click", function () {
+        myPartyFilter()
+    });
+    document.getElementById("myCheckboxI").addEventListener("click", function () {
+        myPartyFilter()
+    });
+
+    document.getElementById("stateFilter").addEventListener("change", function () {
+        myPartyFilter()
+
+    });
+
+}
 
 
-//we identify the values from the object array given by running an addEventListener method.
-
-document.getElementById("myCheckboxD").addEventListener("click", function () {
-    myPartyFilter()
-});
-document.getElementById("myCheckboxR").addEventListener("click", function () {
-    myPartyFilter()
-});
-document.getElementById("myCheckboxI").addEventListener("click", function () {
-    myPartyFilter()
-});
-
-//we create an empty array where we will store the selected values.
 function myPartyFilter() {
     var selectedValues = [];
     var valuesChecked = [];
     var selectorCb = document.querySelectorAll("input:checked");
 
+
     for (var i = 0; i < selectorCb.length; i++) {
         valuesChecked.push(selectorCb[i].value)
     }
 
-    console.log(valuesChecked)
-    dataThatIWant = data.results[0].members
+    //createMyTable(valuesChecked); _//esto no va pk el parametro que pasamos no contiene la información de los miembros
+    console.log(valuesChecked);
+    var newInfo = data.results[0].members
 
-    for (var i = 0; i < dataThatIWant.length; i++) {
+    for (var i = 0; i < newInfo.length; i++) {
 
-        /* if(valuesChecked.includes(dataThatIWant[i].party) || valuesChecked.length == 0){
-          selectedValues.push(dataThatIWant[i])
-         }*/
+        if (valuesChecked.includes(newInfo[i].party) || valuesChecked.length == 0) {
+            selectedValues.push(newInfo[i])
+        }
 
-        if (document.getElementById("myCheckboxD").checked && dataThatIWant[i].party == "D") {
+        /*if (document.getElementById("myCheckboxD").checked && dataThatIWant[i].party == "D") {
             selectedValues.push(dataThatIWant[i])
             console.log(dataThatIWant[i]);
         }
@@ -98,49 +115,67 @@ function myPartyFilter() {
             document.getElementById("myCheckboxI").checked == false) {
             selectedValues.push(dataThatIWant[i])
             console.log(dataThatIWant[i]);
-        }
+        }*/
     }
 
-    createMyTable(selectedValues)
+    myStateFilter(selectedValues)
 }
 
 
+function populateStatesDropdown() {
 
-// Before we create a select dropdown for the states, we must create a new array in order to sort them and disregard duplicates.
+    var dropdown = document.getElementById("stateFilter")
 
     var noDupl = [];
+    var nonRepeatedStates = [];
+
+    for (var i = 0; i < data.results[0].members.length; i++) {
+
+        if (!nonRepeatedStates.includes(data.results[0].members[i].state)) {
+            nonRepeatedStates.push(data.results[0].members[i].state);
+        }
+
+    }
+
+    nonRepeatedStates.sort();
+
+
+    for (var k = 0; k < nonRepeatedStates.length; k++) {
+        var option = document.createElement("option");
+        option.innerHTML = nonRepeatedStates[k];
+
+        dropdown.append(option);
+    }
+
+    console.log(nonRepeatedStates);
+
+}
+
+
+function myStateFilter(dataThatIWant) {
+
+    var dropdownStates = [];
+
+    var checkDropdown = document.getElementById("stateFilter").value;
 
     for (var i = 0; i < dataThatIWant.length; i++) {
 
-        if (!noDupl.includes(dataThatIWant[i].state)) {
 
-            noDupl.push(dataThatIWant[i].state);
+        if (checkDropdown == dataThatIWant[i].state || checkDropdown == "All") {
+            dropdownStates.push(dataThatIWant[i])
         }
+        console.log(dropdownStates);
     }
 
+    /*if (nonRepeatedStates.includes(newInfo.state) || (valuesChecked.length == 0)) {
+        return true
+    } else {
+        return false
+    }*/
 
-    var statesUpdated = noDupl.sort();
 
-    //We discard the duplicaes from the array.
+    createMyTable(dropdownStates);
+
+}
 
 
-    console.log(statesUpdated);
-
-    //We create the filter options by state
-
-    var options = document.getElementById("stateFilter");
-
-    for (var i = 0; i < statesUpdated.length; i++) {
-
-        var anotherOption = document.createElement("option");
-
-        var finalState = statesUpdated[i];
-
-        anotherOption.append(finalState);
-
-        anotherOption.setAttribute("value", finalState);
-
-        options.append(anotherOption);
-
-    }
- 
