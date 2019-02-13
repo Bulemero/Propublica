@@ -1,4 +1,4 @@
-//CREATE VARIABLES FIRST
+//CREATE VARIABLES
 
 var myTable = document.getElementById("myPrettyTable");
 var dataThatIWant = data.results[0].members;
@@ -6,13 +6,13 @@ var dropdownStates = [];
 var selectedValues = [];
 var valuesChecked = [];
 var checkDropdown = document.getElementById("stateFilter").value;
-/*var newInfo = data.results[0].members;
-var noDupl = [];
-var nonRepeatedStates = [];
-*/
+//var newInfo = data.results[0].members;
+//var noDupl = [];
+//var nonRepeatedStates = [];
 
 
-//CALL ALL FUNCTIONS AT THE BEGINNING OF YOUR CODE
+
+//CALL FUNCTIONS
 
 console.log(data);
 createMyTable(dataThatIWant);
@@ -20,7 +20,7 @@ addingListeners();
 populateStatesDropdown();
 
 
-//DISPLAY ALL FUNCTIONS
+//DISPLAY FUNCTIONS
 
 function createMyTable(dataThatIWant) {
 
@@ -86,8 +86,8 @@ function myPartyFilter() {
         valuesChecked.push(selectorCb[i].value)
     }
 
-    //createMyTable(valuesChecked); _//esto no va pk el parametro que pasamos no contiene la información de los miembros
     console.log(valuesChecked);
+    
     var newInfo = data.results[0].members
 
     for (var i = 0; i < newInfo.length; i++) {
