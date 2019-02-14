@@ -2,9 +2,9 @@
 
 var statistics = [
     {
-        "Number of Democrats": 0,
-        "Number of Republicans": 0,
-        "Number of Independents": 0,
+        "Number of Democrats": displayValues("D"),
+        "Number of Republicans": displayValues("R"),
+        "Number of Independents": displayValues("I"),
         "Average 'Votes with party' for Democrats": 0,
         "Average 'Votes with party' for Republicans": 0,
         "Average 'Votes with party' for Independents": 0,
@@ -28,24 +28,33 @@ var statistics = [
 var rep = "R";
 var dem = "D";
 var ind = "I";
-var keyValues = data.results[0].members[i];
-var listOfValues = [];
+
 
 //CALL FUNCTIONS
 
-console.log(statistics);
+console.log(data);
 
 
 
 //DISPLAY FUNCTIONS
 
 
-function displayValues() {
-    for (var i = 0; i < statistics.length; i++) {
+function displayValues(party) {
 
-        console.log(statistics["Number of Republicans"]);
+    var allMembers = data.results[0].members;
+    var listOfValues = [];
+
+
+    for (var i = 0; i < allMembers.length; i++) {
+
+        if (allMembers[i].party == party) {
+            listOfValues.push(allMembers[i]);
+        }
     }
-}
-displayValues(keyValues);
+    
 
+    var finalInfo = listOfValues.length;
+
+    return finalInfo;
+}
 
