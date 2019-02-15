@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>House</title>
+    <title>Congress 113</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     
@@ -25,10 +25,8 @@
         </div>
 
         <div class="contactEmail">
-            <p>
-                <a href="mailto:info@tgif.net">info@tgif.net
-                </a>
-            </p>
+            <a href="mailto:info@tgif.net"> <img src="images/envelope.png" alt="envelope" class="emailImage">
+            </a>
         </div>
 
     </header>
@@ -44,11 +42,24 @@
                         <li><a href="senate-data.html">Senate</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Attendance</a></li>
-                <li><a href="#">Party Loyalty</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Attendance<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="house-attendance.html">House</a></li>
+                        <li><a href="senate-attendance.html">Senate</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Party Loyalty<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="house-party-loyalty.html">House</a></li>
+                        <li><a href="senate-party-loyalty.html">Senate</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
+
 
     <!--Table container-->
     <div>

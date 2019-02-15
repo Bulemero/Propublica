@@ -11,16 +11,39 @@ body {
     justify-content: space-between;
 }
 
+/* MAIN */
+
 .contactEmail {
     margin-top: auto;
 
 }
 
-/* MAIN */
+.emailImage {
+    height: 75px;
+    margin: 0px 15px 35px 0px;
+}
+
+.navbar {
+    align-items: baseline;
+    height: 120px;
+    font-size: 20px;
+}
+
+.nav {
+    
+    display: flex;
+    flex-flow: row wrap; 
+    
+}
 
 .mainImage {
     display: flex;
     justify-content: flex-end;
+}
+
+.indexImage {
+    margin: 0px 15px 0px 0px;
+    height: 128px;
 }
 
 .container {
@@ -53,6 +76,23 @@ body {
     text-align: center;
 }
 
+#mainDiv {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.mainText {
+    max-width: 50%;
+}
+
+.mainTable {
+    max-width: 50%;
+    margin: 0px 100px 0px 0px;
+}
+
+
+
 /* FOOTER */
 
 .myFooter {
@@ -61,4 +101,5 @@ body {
     background-color: #343A40;
     color: #007bff;
     margin: 10px 0px 0px 0px;
+    font-size: 20px;
 }

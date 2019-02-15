@@ -5,7 +5,7 @@ var statistics = [
         "Number of Democrats": displayValues("D"),
         "Number of Republicans": displayValues("R"),
         "Number of Independents": displayValues("I"),
-        "Total Senate Memberrs": totalMembers,
+        "Total Senate Members": totalMembers,
         "Average 'Votes with party' for Democrats": getPctVotes("D"),
         "Average 'Votes with party' for Republicans": getPctVotes("R"),
         "Average 'Votes with party' for Independents": getPctVotes("I"),
@@ -31,18 +31,14 @@ var rep = "R";
 var dem = "D";
 var ind = "I";
 var totalMembers = displayValues("I") + displayValues("R") + displayValues("D");
+var myNewTable = document.getElementById("myAmazingTable");
+var dataThatIWant = data.results[0].members;
 
-/*
-var avVotesWPartyD = (displayValues("D")/totalMembers)*100;
-var avVotesWPartyR = (displayValues("R")/totalMembers)*100;
-var avVotesWPartyI = (displayValues("I")/totalMembers)*100;
-*/
 
 //CALL FUNCTIONS
 
 console.log(data);
-
-
+createAnotherTable(dataThatIWant);
 
 //DISPLAY FUNCTIONS
 
@@ -96,6 +92,7 @@ function getPctVotes(party) {
     
 }
 
+
 function showTotalAveragePct () {
     var allMembers = data.results[0].members;
     var averagePctArray = [];
@@ -116,6 +113,35 @@ function showTotalAveragePct () {
     
 }
 
+
+
+function createAnotherTable(dataThatIWant) {
+
+        var row = document.createElement("tr");
+        var roy = document.createElement("tr");
+        var rox = document.createElement("tr");
+        var roz = document.createElement("tr");
+
+        row.insertCell().innerHTML = "Democrats";
+        row.insertCell().innerHTML = displayValues("D");
+        row.insertCell().innerHTML = getPctVotes("D")+ "%";
+    
+        roy.insertCell().innerHTML = "Republicans";
+        roy.insertCell().innerHTML = displayValues("R");
+        roy.insertCell().innerHTML = getPctVotes("R")+ "%";
+    
+        rox.insertCell().innerHTML = "Independents";
+        rox.insertCell().innerHTML = displayValues("I");
+        rox.insertCell().innerHTML = getPctVotes("I")+ "%";
+    
+        roz.insertCell().innerHTML = "Total";
+        roz.insertCell().innerHTML = totalMembers;
+        roz.insertCell().innerHTML = showTotalAveragePct()+ "%";
+
+
+        myNewTable.append(row, roy, rox, roz);
+
+}
 
 
 
