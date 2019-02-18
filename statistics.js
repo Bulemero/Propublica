@@ -30,6 +30,7 @@ var statistics = [
 var rep = "R";
 var dem = "D";
 var ind = "I";
+var totalDemocrats
 var totalMembers = displayValues("I") + displayValues("R") + displayValues("D");
 var myNewTable = document.getElementById("myAmazingTable");
 var dataThatIWant = data.results[0].members;
@@ -112,7 +113,6 @@ function showTotalAveragePct () {
     return roundPcts;
     
 }
-
 
 
 function createAnotherTable(dataThatIWant) {
