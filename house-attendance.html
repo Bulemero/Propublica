@@ -72,7 +72,7 @@
             <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
         </div>
 
-        <div class="mainTable">
+        <!--<div class="mainTable">
             <h2>House at a glance</h2>
             <table class="table table-bordered">
                 <thead>
@@ -86,7 +86,30 @@
 
                 </tbody>
             </table>
+        </div>-->
+        
+        
+    <div id="app" class="mainTable">
+            <h2>House at a glance</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Party</th>
+                        <th>Number of Reps</th>
+                        <th>% Voted with Prty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in names">
+                        <td>{{item.party}}</td>
+                        <td>{{item.NumberOfReps}}</td>
+                        <td>{{item.pctVotedParty}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
+
     </div>
 
     <footer class="myFooter container-fluid">
@@ -97,6 +120,7 @@
 
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
 
     <script src="pro-congress-113-house.js"></script>
 

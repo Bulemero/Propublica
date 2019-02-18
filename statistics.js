@@ -2,14 +2,14 @@
 
 var statistics = [
     {
-        "Number of Democrats": displayValues("D"),
-        "Number of Republicans": displayValues("R"),
-        "Number of Independents": displayValues("I"),
+        "Number of Democrats": totalDemocrats,
+        "Number of Republicans": totalRepublicans,
+        "Number of Independents": totalIndependents,
         "Total Senate Members": totalMembers,
-        "Average 'Votes with party' for Democrats": getPctVotes("D"),
-        "Average 'Votes with party' for Republicans": getPctVotes("R"),
-        "Average 'Votes with party' for Independents": getPctVotes("I"),
-        "Total Average 'Votes with party' Senate": showTotalAveragePct(),
+        "Average 'Votes with party' for Democrats": averageDemocrats,
+        "Average 'Votes with party' for Republicans": averageRepublicans,
+        "Average 'Votes with party' for Independents": averageIndependents,
+        "Total Average 'Votes with party' Senate": averageSenators,
         /*"Least engaged names": 0,
         "Least engaged number of missed votes": 0,
         "Least engaged percentage tableLeastEngagedmissed votes": 0,
@@ -27,11 +27,20 @@ var statistics = [
 
 //CREATE VARIABLES
 
-var rep = "R";
 var dem = "D";
+var rep = "R";
 var ind = "I";
-var totalDemocrats
+
+var totalDemocrats = displayValues("D");
+var totalRepublicans = displayValues("R");
+var totalIndependents = displayValues("I");
 var totalMembers = displayValues("I") + displayValues("R") + displayValues("D");
+
+var averageDemocrats = getPctVotes("D");
+var averageRepublicans = getPctVotes("R");
+var averageIndependents = getPctVotes("I");
+var averageSenators = showTotalAveragePct();
+
 var myNewTable = document.getElementById("myAmazingTable");
 var dataThatIWant = data.results[0].members;
 
@@ -39,7 +48,7 @@ var dataThatIWant = data.results[0].members;
 //CALL FUNCTIONS
 
 console.log(data);
-createAnotherTable(dataThatIWant);
+//createAnotherTable(dataThatIWant);
 
 //DISPLAY FUNCTIONS
 
@@ -115,7 +124,7 @@ function showTotalAveragePct () {
 }
 
 
-function createAnotherTable(dataThatIWant) {
+/*function createAnotherTable(dataThatIWant) {
 
         var row = document.createElement("tr");
         var roy = document.createElement("tr");
@@ -142,6 +151,43 @@ function createAnotherTable(dataThatIWant) {
         myNewTable.append(row, roy, rox, roz);
 
 }
+*/
+
+
+var myVueObject = new Vue({
+    el: "#app",
+    data: {
+
+        names: [
+            {
+                party: "Democrats",
+                NumberOfReps: totalDemocrats,
+                pctVotedParty: averageDemocrats + "%"
+            },
+            {
+                party: "Republicans",
+                NumberOfReps: totalRepublicans,
+                pctVotedParty: averageRepublicans + "%"
+            },
+            {
+                party: "Independents",
+                NumberOfReps: totalRepublicans,
+                pctVotedParty: averageIndependents + "%"
+            },
+            {
+                party: "Total",
+                NumberOfReps: totalMembers,
+                pctVotedParty: averageSenators + "%"
+            }
+    ]
+    },
+    methods: {
+
+    }
+
+});
+
+
 
 
 

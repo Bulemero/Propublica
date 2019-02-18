@@ -5,23 +5,23 @@ var myVueObject = new Vue({
         names: [
             {
                 party: "Democrats",
-                NumberOfReps: "displayValues("D")",
-                pctVotedParty: "YY"
+                NumberOfReps: "totalDemocrats",
+                pctVotedParty: "averageDemocrats"
             },
             {
                 party: "Republicans",
-                NumberOfReps: "19",
-                pctVotedParty: "XY"
+                NumberOfReps: "totalRepublicans",
+                pctVotedParty: "averageRepublicans"
             },
             {
                 party: "Independents",
-                NumberOfReps: "100",
-                pctVotedParty: "YX"
+                NumberOfReps: "totalRepublicans",
+                pctVotedParty: "averageIndependents"
             },
             {
                 party: "Total",
                 NumberOfReps: "totalMembers",
-                pctVotedParty: "XX"
+                pctVotedParty: "averageSenators"
             }
     ]
     },
