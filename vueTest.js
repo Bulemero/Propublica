@@ -3,7 +3,8 @@ var myVueObject = new Vue({
     data: {
 
         key: "FWHJZ1xefU7G9fkBIhnV9o021FA3btC0nLKaMjIT",
-        url: "https://api.propublica.org/congress/v1/116/",
+        url: "https://api.propublica.org/congress/v1/113/senate/members.json",
+        members: [],
         names: [
             {
                 party: "Democrats",
@@ -28,44 +29,69 @@ var myVueObject = new Vue({
     ]
     },
 
-    created: function () {
-        this.getData();
-    },
+
 
     methods: {
-        getData: function () {
+        //------------------------------Fetch data -------------------------------------------------------------->
+        getData() {
 
-            this.loading = true;
-
-            fetch(this.url, {
+            fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
                     headers: {
                         "X-API-KEY": this.key
                     }
                 })
-                .then(response => {
-                    return response.json();
+
+                .then(function (resp) {
+                    return resp.json()
                 })
-                .then(data => {
-                    this.members = data.results[0].members;
-                    this.loading = false;
-                })
-                .catch(error => console.log("Error: " + error));
-        }
-    },
-    /*computed: {
-        noRepeatedStates() {
-            return new Set(this.members.map(m => m.state).sort());
-        },
-        filteredMembers() {
-            return this.members.filter(member => {
-                let filter1 = this.checkBoxes.includes(member.party) || this.checkBoxes.length === 0;
-                let filter2 = member.state === this.stateSelected || this.stateSelected === "all";
-                return filter1 && filter2;
+            .then(function (allMembers){
+                console.log(allMembers.results[0].members)
+                myVueObject.members = allMembers.results[0].members
+                
+                
+                
+                
+                
+                
+                
             })
-        },
-        finalUrl() {
-            return "https://api.propublica.org/congress/v1/116/" + this.chamber + "/members.json"
+            
         }
-    }*/
+
+        /*getData() {
+
+
+            if (window.location.href.includes("senate")) {
+                site = 'https://api.propublica.org/congress/v1/113/senate/members.json';
+            } else if (window.location.href.includes("house")) {
+                site = 'https://api.propublica.org/congress/v1/113/house/members.json';
+            }
+            var that = this;
+            fetch(site, {
+
+                    headers: {
+                        'X-API-Key': 'FWHJZ1xefU7G9fkBIhnV9o021FA3btC0nLKaMjIT',
+                    }
+                }).then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Unable to retrieve data');
+                    }
+                })
+                .then(function (jsonData) {
+                    app.members = jsonData.results[0].members;
+
+                    //push data into local  storage
+                    var myJSON = JSON.stringify(app.members);
+                    sessionStorage.setItem('membersJSON', myJSON);
+                    app.sessionStorage_data = JSON.parse(sessionStorage.getItem('membersJSON'));
+                    //calling functions + hide loader
+                    app.loading = false;
+                    app.members_counter();
+                });
+        },
+*/
+    }
 
 });

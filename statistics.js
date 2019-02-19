@@ -94,33 +94,33 @@ function getPctVotes(party) {
         sumUp = sumUp + totalVotesArray[i];
 
     }
-    
-    var averagePctTotal = sumUp/totalPartySenators;
+
+    var averagePctTotal = sumUp / totalPartySenators;
     var roundPcts = averagePctTotal.toFixed();
-    
+
     return roundPcts;
-    
+
 }
 
 
-function showTotalAveragePct () {
+function showTotalAveragePct() {
     var allMembers = data.results[0].members;
     var averagePctArray = [];
     var sumUp = 0;
-    
+
     for (var i = 0; i < allMembers.length; i++) {
-        
+
         averagePctArray.push(allMembers[i].votes_with_party_pct)
-        
+
         sumUp = sumUp + averagePctArray[i];
-        
+
     }
-    
-    var totalPctSenators = sumUp/averagePctArray.length;
+
+    var totalPctSenators = sumUp / averagePctArray.length;
     var roundPcts = totalPctSenators.toFixed();
-    
+
     return roundPcts;
-    
+
 }
 
 
@@ -157,7 +157,8 @@ function showTotalAveragePct () {
 var myVueObject = new Vue({
     el: "#app",
     data: {
-
+        key: "FWHJZ1xefU7G9fkBIhnV9o021FA3btC0nLKaMjIT",
+        url: "https://api.propublica.org/congress/v1/113/senate/members.json",
         names: [
             {
                 party: "Democrats",
@@ -186,8 +187,3 @@ var myVueObject = new Vue({
     }
 
 });
-
-
-
-
-
