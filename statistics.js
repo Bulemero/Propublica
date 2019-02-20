@@ -44,6 +44,39 @@ var averageSenators = showTotalAveragePct();
 var myNewTable = document.getElementById("myAmazingTable");
 var dataThatIWant = data.results[0].members;
 
+var myVueObject = new Vue({
+    el: "#app",
+    data: {
+        key: "FWHJZ1xefU7G9fkBIhnV9o021FA3btC0nLKaMjIT",
+        url: "https://api.propublica.org/congress/v1/113/senate/members.json",
+        names: [
+            {
+                party: "Democrats",
+                NumberOfReps: totalDemocrats,
+                pctVotedParty: averageDemocrats + "%"
+            },
+            {
+                party: "Republicans",
+                NumberOfReps: totalRepublicans,
+                pctVotedParty: averageRepublicans + "%"
+            },
+            {
+                party: "Independents",
+                NumberOfReps: totalRepublicans,
+                pctVotedParty: averageIndependents + "%"
+            },
+            {
+                party: "Total",
+                NumberOfReps: totalMembers,
+                pctVotedParty: averageSenators + "%"
+            }
+    ]
+    },
+    methods: {
+
+    }
+
+});
 
 //CALL FUNCTIONS
 
@@ -154,36 +187,4 @@ function showTotalAveragePct() {
 */
 
 
-var myVueObject = new Vue({
-    el: "#app",
-    data: {
-        key: "FWHJZ1xefU7G9fkBIhnV9o021FA3btC0nLKaMjIT",
-        url: "https://api.propublica.org/congress/v1/113/senate/members.json",
-        names: [
-            {
-                party: "Democrats",
-                NumberOfReps: totalDemocrats,
-                pctVotedParty: averageDemocrats + "%"
-            },
-            {
-                party: "Republicans",
-                NumberOfReps: totalRepublicans,
-                pctVotedParty: averageRepublicans + "%"
-            },
-            {
-                party: "Independents",
-                NumberOfReps: totalRepublicans,
-                pctVotedParty: averageIndependents + "%"
-            },
-            {
-                party: "Total",
-                NumberOfReps: totalMembers,
-                pctVotedParty: averageSenators + "%"
-            }
-    ]
-    },
-    methods: {
 
-    }
-
-});
