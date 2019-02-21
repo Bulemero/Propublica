@@ -1,86 +1,153 @@
-//CREATE JSON OBJECT
-
-var statistics = [
-    {
-        "Number of Democrats": totalDemocrats,
-        "Number of Republicans": totalRepublicans,
-        "Number of Independents": totalIndependents,
-        "Total Senate Members": totalMembers,
-        "Average 'Votes with party' for Democrats": averageDemocrats,
-        "Average 'Votes with party' for Republicans": averageRepublicans,
-        "Average 'Votes with party' for Independents": averageIndependents,
-        "Total Average 'Votes with party' Senate": averageSenators,
-        /*"Least engaged names": 0,
-        "Least engaged number of missed votes": 0,
-        "Least engaged percentage tableLeastEngagedmissed votes": 0,
-        "Most engaged names": 0,
-        "Most engaged number of missed votes": 0,
-        "Most engaged percentage of missed votes": 0,
-        "Least loyal names": 0,
-        "Least loyal number of votes": 0,
-        "Least loyal percentage party votes": 0,
-        "Most loyal names": 0,
-        "Most loyal number of votes": 0,
-        "Most loyal percentage party votes": 0,*/
-        }
-    ];
-
-//CREATE VARIABLES
-
-var dem = "D";
-var rep = "R";
-var ind = "I";
-
-var totalDemocrats = displayValues("D");
-var totalRepublicans = displayValues("R");
-var totalIndependents = displayValues("I");
-var totalMembers = displayValues("I") + displayValues("R") + displayValues("D");
-
-var averageDemocrats = getPctVotes("D");
-var averageRepublicans = getPctVotes("R");
-var averageIndependents = getPctVotes("I");
-var averageSenators = showTotalAveragePct();
-
-var myNewTable = document.getElementById("myAmazingTable");
-var dataThatIWant = data.results[0].members;
+//CREATE VUE OBJECT
 
 var myVueObject = new Vue({
     el: "#app",
     data: {
+
         key: "FWHJZ1xefU7G9fkBIhnV9o021FA3btC0nLKaMjIT",
         url: "https://api.propublica.org/congress/v1/113/senate/members.json",
+        members: [],
         names: [
             {
                 party: "Democrats",
-                NumberOfReps: totalDemocrats,
-                pctVotedParty: averageDemocrats + "%"
+                NumberOfReps: 0,
+                pctVotedParty: 0
             },
             {
                 party: "Republicans",
-                NumberOfReps: totalRepublicans,
-                pctVotedParty: averageRepublicans + "%"
+                NumberOfReps: 0,
+                pctVotedParty: 0
             },
             {
                 party: "Independents",
-                NumberOfReps: totalRepublicans,
-                pctVotedParty: averageIndependents + "%"
+                NumberOfReps: 0,
+                pctVotedParty: 0
             },
             {
                 party: "Total",
-                NumberOfReps: totalMembers,
-                pctVotedParty: averageSenators + "%"
+                NumberOfReps: 0,
+                pctVotedParty: 0
             }
     ]
     },
+    created() {
+        this.getData()
+    },
+
     methods: {
+        //------------------------------Fetch data -------------------------------------------------------------->
+        getData() {
 
-    }
+            if (window.location.pathname.includes("senate")) {
 
+                url = 'https://api.propublica.org/congress/v1/113/senate/members.json';
+            } else if (window.location.pathname.includes("house")) {
+                url = 'https://api.propublica.org/congress/v1/113/house/members.json';
+            }
+
+
+            fetch(url, {
+                    headers: {
+                        "X-API-KEY": this.key
+                    }
+                })
+
+
+                .then(function (response) {
+                    if (response.ok)
+                        return response.json();
+
+                })
+                .then(function (myTada) {
+                    console.log(myTada)
+                    var data = myTada
+
+                    allMembers = data.results[0].members;
+
+
+                    myVueObject.names[0].NumberOfReps = displayValues("D");
+                    myVueObject.names[1].NumberOfReps = displayValues("R");
+                    myVueObject.names[2].NumberOfReps = displayValues("I");
+                    myVueObject.names[3].NumberOfReps = displayValues("I") + displayValues("R") + displayValues("D");
+
+                    myVueObject.names[0].pctVotedParty = getPctVotes("D") + "%";
+                    myVueObject.names[1].pctVotedParty = getPctVotes("R") + "%";
+                    myVueObject.names[2].pctVotedParty = getPctVotes("I") + "%";
+                    myVueObject.names[3].pctVotedParty = showTotalAveragePct() + "%";
+
+
+
+
+                    // newInfo = data.results[0].members;
+                    //crida de functions:
+                    //                    displayValues(allMembers)
+                    runFunctions(allMembers)
+                    //
+                    //                    getPctVotes(allMembers)
+                    //                    showTotalAveragePct(allMembers)
+
+                });
+
+        }
+    },
 });
 
-//CALL FUNCTIONS
 
-console.log(data);
+//CREATE JSON OBJECT
+
+function runFunctions() {
+
+    //CREATE VARIABLES
+
+    var dem = "D";
+    var rep = "R";
+    var ind = "I";
+
+    //    var totalDemocrats = displayValues("D");
+    //    var totalRepublicans = displayValues("R");
+    //    var totalIndependents = displayValues("I");
+    //    var totalMembers = displayValues("I") + displayValues("R") + displayValues("D");
+    //
+    //    var averageDemocrats = getPctVotes("D");
+    //    var averageRepublicans = getPctVotes("R");
+    //    var averageIndependents = getPctVotes("I");
+    //    var averageSenators = showTotalAveragePct();
+
+    var myNewTable = document.getElementById("myAmazingTable");
+    var dataThatIWant = data.results[0].members;
+
+    var statistics = [
+        {
+            "Number of Democrats": totalDemocrats,
+            "Number of Republicans": totalRepublicans,
+            "Number of Independents": totalIndependents,
+            "Total Senate Members": totalMembers,
+            "Average 'Votes with party' for Democrats": averageDemocrats,
+            "Average 'Votes with party' for Republicans": averageRepublicans,
+            "Average 'Votes with party' for Independents": averageIndependents,
+            "Total Average 'Votes with party' Senate": averageSenators,
+            /*"Least engaged names": 0,
+            "Least engaged number of missed votes": 0,
+            "Least engaged percentage tableLeastEngagedmissed votes": 0,
+            "Most engaged names": 0,
+            "Most engaged number of missed votes": 0,
+            "Most engaged percentage of missed votes": 0,
+            "Least loyal names": 0,
+            "Least loyal number of votes": 0,
+            "Least loyal percentage party votes": 0,
+            "Most loyal names": 0,
+            "Most loyal number of votes": 0,
+            "Most loyal percentage party votes": 0,*/
+        }
+    ];
+
+
+}
+
+
+//CALL FUNCTIONS - but this time around they are called above during the fetch
+
+//console.log(data);
 //createAnotherTable(dataThatIWant);
 
 //DISPLAY FUNCTIONS
@@ -88,7 +155,7 @@ console.log(data);
 
 function displayValues(party) {
 
-    var allMembers = data.results[0].members;
+    //var allMembers = data.results[0].members;
     var listOfValues = [];
 
 
@@ -108,7 +175,7 @@ function displayValues(party) {
 
 function getPctVotes(party) {
     var totalPartySenators = displayValues(party);
-    var allMembers = data.results[0].members;
+    //var allMembers = data.results[0].members;
     var pctArray = [];
     var totalVotesArray = [];
     var sumUp = 0;
@@ -137,7 +204,7 @@ function getPctVotes(party) {
 
 
 function showTotalAveragePct() {
-    var allMembers = data.results[0].members;
+    // var allMembers = data.results[0].members;
     var averagePctArray = [];
     var sumUp = 0;
 
@@ -185,6 +252,3 @@ function showTotalAveragePct() {
 
 }
 */
-
-
-

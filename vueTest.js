@@ -30,7 +30,7 @@ var myVueObject = new Vue({
             }
     ]
     },
-    created(){
+    created() {
         this.getData()
     },
 
@@ -63,28 +63,28 @@ var myVueObject = new Vue({
                     var data = myTada
 
                     allMembers = data.results[0].members;
-                
+
 
                     myVueObject.names[0].NumberOfReps = displayValues("D");
                     myVueObject.names[1].NumberOfReps = displayValues("R");
                     myVueObject.names[2].NumberOfReps = displayValues("I");
                     myVueObject.names[3].NumberOfReps = displayValues("I") + displayValues("R") + displayValues("D");
 
-                    myVueObject.names[0].pctVotedParty = getPctVotes("D")+"%";
-                    myVueObject.names[1].pctVotedParty = getPctVotes("R")+"%";
-                    myVueObject.names[2].pctVotedParty = getPctVotes("I")+"%";
-                    myVueObject.names[3].pctVotedParty = showTotalAveragePct()+"%";
+                    myVueObject.names[0].pctVotedParty = getPctVotes("D") + "%";
+                    myVueObject.names[1].pctVotedParty = getPctVotes("R") + "%";
+                    myVueObject.names[2].pctVotedParty = getPctVotes("I") + "%";
+                    myVueObject.names[3].pctVotedParty = showTotalAveragePct() + "%";
 
 
 
-                    
+
                     // newInfo = data.results[0].members;
                     //crida de functions:
-//                    displayValues(allMembers)
+                    //                    displayValues(allMembers)
                     runFunctions(allMembers)
-//
-//                    getPctVotes(allMembers)
-//                    showTotalAveragePct(allMembers)
+                    //
+                    //                    getPctVotes(allMembers)
+                    //                    showTotalAveragePct(allMembers)
 
                 });
 
@@ -145,7 +145,7 @@ function runFunctions() {
 }
 
 
-//CALL FUNCTIONS
+//CALL FUNCTIONS - but this time around they are called above during the fetch
 
 //console.log(data);
 //createAnotherTable(dataThatIWant);
@@ -204,7 +204,7 @@ function getPctVotes(party) {
 
 
 function showTotalAveragePct() {
-   // var allMembers = data.results[0].members;
+    // var allMembers = data.results[0].members;
     var averagePctArray = [];
     var sumUp = 0;
 
